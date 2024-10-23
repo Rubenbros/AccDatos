@@ -41,7 +41,7 @@ Si tu proyecto usa Maven, puedes agregar la dependencia del driver MySQL en el a
 
 Si no estás utilizando Maven, puedes descargar el driver JDBC de MySQL manualmente:
 
-1. Ve a la [página de descargas del conector MySQL](https://dev.mysql.com/downloads/connector/j/).
+1. Ve a la [página de descargas del conector MySQL](https://dev.mysql.com/downloads/connector/j/). (Si trabajas con Windows selecciona Platform Independent)
 2. Descarga el archivo ZIP del conector JDBC.
 3. Extrae el archivo ZIP. Dentro encontrarás un archivo JAR (por ejemplo, `mysql-connector-java-8.0.33.jar`).
 4. En IntelliJ, haz clic derecho en tu proyecto en el panel de proyectos y selecciona **Open Module Settings** (o presiona `F4`).
