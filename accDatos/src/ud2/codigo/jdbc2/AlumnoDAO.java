@@ -10,14 +10,14 @@ import java.sql.Date;
 public class AlumnoDAO {
     private static final String URL = "jdbc:mysql://localhost:3306/Academia";
     private static final String USER = "root";
-    private static final String PASSWORD = "tu_contraseña";
+    private static final String PASSWORD = "123456";
 
     // Metodo para insertar un nuevo alumno
     public void insertarAlumno(String nombre, String apellido, Date fechaNacimiento) {
         String sql = "INSERT INTO Alumnos (nombre, apellido, fecha_nacimiento) VALUES (?, ?, ?)";
 
         try (Connection conexion = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = conexion.prepareStatement(sql)) {
+             PreparedStatement pstmt = conexion.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, nombre);
             pstmt.setString(2, apellido);
