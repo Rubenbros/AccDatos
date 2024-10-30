@@ -23,8 +23,13 @@ public class AlumnoDAO {
             pstmt.setString(2, apellido);
             pstmt.setDate(3, fechaNacimiento);
 
-            int filasAfectadas = pstmt.executeUpdate();
-            System.out.println("Alumno insertado. Filas afectadas: " + filasAfectadas);
+            int idGenerado=-1;
+            pstmt.executeUpdate();
+            ResultSet resultSet = pstmt.getGeneratedKeys();
+            if(resultSet.next()){
+                idGenerado = resultSet.getInt(1);
+            }
+            System.out.println("Alumno insertado con id " + idGenerado);
 
         } catch (SQLException e) {
             System.out.println("Error al insertar el alumno.");
