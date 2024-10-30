@@ -28,8 +28,9 @@ El programa debe presentar un **menú principal** que permita gestionar cada una
 3. **Gestión de Asignaturas**
 4. **Gestión de Matrículas**
 5. **Gestión de Calificaciones**
-6. **Mostrar Profesor y Alumnos de Asignatura**
-7. **Salir**
+6. **Gestión de Asignación-Profesor**
+7. **Mostrar Profesor y Alumnos de Asignatura**
+8. **Salir**
 
 ### Detalles de Funcionalidades
 
@@ -111,7 +112,8 @@ Seleccione una opción:
 4. Gestión de Matrículas
 5. Gestión de Calificaciones
 6. Mostrar Profesor y Alumnos de Asignatura
-7. Salir
+7. Gestión de Asignacion-Profesor
+8. Salir
 
 > 1
 
