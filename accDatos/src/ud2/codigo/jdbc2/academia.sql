@@ -51,6 +51,8 @@ CREATE TABLE Calificaciones (
                                 alumno_id INT NOT NULL,
                                 asignatura_id INT NOT NULL,
                                 profesor_id INT NOT NULL,
-                                calificacion DECIMAL(4,
-
-
+                                calificacion DECIMAL(4, 2) NOT NULL,
+                                FOREIGN KEY (alumno_id) REFERENCES Alumnos(id),
+                                FOREIGN KEY (asignatura_id) REFERENCES Asignaturas(id),
+                                FOREIGN KEY (profesor_id) REFERENCES Profesores(id)
+                            );
