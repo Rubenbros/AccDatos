@@ -50,4 +50,9 @@ public class Asignatura {
     public void setAusenciasPermitidas(int ausenciasPermitidas) {
         this.ausenciasPermitidas = ausenciasPermitidas;
     }
+
+    @Override
+    public String toString() {
+        return "Asignatura{id=" + id + ", nombre='" + nombre + "', alumnosMaximos=" + alumnosMaximos + ", ausenciasPermitidas=" + ausenciasPermitidas + '}';
+    }
 }

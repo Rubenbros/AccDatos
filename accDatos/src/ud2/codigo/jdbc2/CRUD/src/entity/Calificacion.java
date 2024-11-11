@@ -63,4 +63,9 @@ public class Calificacion {
     public void setCalificacion(BigDecimal calificacion) {
         this.calificacion = calificacion;
     }
+
+    @Override
+    public String toString() {
+        return "Calificación{id=" + id + ", alumnoId=" + alumnoId + ", asignaturaId=" + asignaturaId + ", profesorId=" + profesorId + ", calificacion=" + calificacion + '}';
+    }
 }

@@ -39,4 +39,9 @@ public class AsignacionProfesor {
     public void setAsignaturaId(int asignaturaId) {
         this.asignaturaId = asignaturaId;
     }
+
+    @Override
+    public String toString() {
+        return "AsignacionProfesor{id=" + id + ", profesorId=" + profesorId + ", asignaturaId=" + asignaturaId + '}';
+    }
 }

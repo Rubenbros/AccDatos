@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Academia", "root", "password");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Academia", "root", "123456");
 
             while (true) {
                 mostrarMenuPrincipal();

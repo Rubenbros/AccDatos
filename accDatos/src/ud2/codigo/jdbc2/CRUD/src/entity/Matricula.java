@@ -52,4 +52,9 @@ public class Matricula {
     public void setFechaMatricula(Date fechaMatricula) {
         this.fechaMatricula = fechaMatricula;
     }
+
+    @Override
+    public String toString() {
+        return "Matrícula{id=" + id + ", alumnoId=" + alumnoId + ", asignaturaId=" + asignaturaId + ", fechaMatricula=" + fechaMatricula + '}';
+    }
 }

@@ -52,4 +52,9 @@ public class Profesor {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+    @Override
+    public String toString() {
+        return "Profesor{id=" + id + ", nombre='" + nombre + "', apellido='" + apellido + "', fechaNacimiento=" + fechaNacimiento + '}';
+    }
 }
