@@ -1,70 +1,104 @@
 package dao;
 
 import entity.Alumno;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AlumnoDAO {
-    private Connection connection;
 
-    public AlumnoDAO(Connection connection) {
-        this.connection = connection;
+    private SessionFactory sessionFactory;
+
+    public AlumnoDAO(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
-    public int insertarAlumno(Alumno alumno) throws SQLException {
-        String sql = "INSERT INTO Alumnos (nombre, apellido, fecha_nacimiento) VALUES (?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, alumno.getNombre());
-            statement.setString(2, alumno.getApellido());
-            statement.setDate(3, Date.valueOf(alumno.getFechaNacimiento()));
-            statement.executeUpdate();
-
-            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    return generatedKeys.getInt(1);
-                }
-                throw new SQLException("Error al insertar el alumno: No se pudo obtener el ID.");
+    // Crear un nuevo alumno
+    public void insertarAlumno(Alumno alumno) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(alumno);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
             }
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
-    public List<Alumno> listarAlumnos() throws SQLException {
-        List<Alumno> alumnos = new ArrayList<>();
-        String sql = "SELECT * FROM Alumnos";
-        try (PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
+    // Obtener un alumno por ID
+    public Alumno obtenerAlumnoPorId(int id) {
+        Session session = sessionFactory.openSession();
+        Alumno alumno = null;
+        try {
+            alumno = session.get(Alumno.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return alumno;
+    }
 
-            while (resultSet.next()) {
-                Alumno alumno = new Alumno(
-                        resultSet.getInt("id"),
-                        resultSet.getString("nombre"),
-                        resultSet.getString("apellido"),
-                        resultSet.getDate("fecha_nacimiento").toLocalDate()
-                );
-                alumnos.add(alumno);
-            }
+    // Listar todos los alumnos
+    public List<Alumno> listarAlumnos() {
+        Session session = sessionFactory.openSession();
+        List<Alumno> alumnos = null;
+        try {
+            Query<Alumno> query = session.createQuery("FROM Alumno", Alumno.class);
+            alumnos = query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
         return alumnos;
     }
 
-    public void actualizarAlumno(Alumno alumno) throws SQLException {
-        String sql = "UPDATE Alumnos SET nombre = ?, apellido = ?, fecha_nacimiento = ? WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, alumno.getNombre());
-            statement.setString(2, alumno.getApellido());
-            statement.setDate(3, Date.valueOf(alumno.getFechaNacimiento()));
-            statement.setInt(4, alumno.getId());
-            statement.executeUpdate();
+    // Actualizar un alumno
+    public void actualizarAlumno(Alumno alumno) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(alumno);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
-    public void eliminarAlumno(int id) throws SQLException {
-        String sql = "DELETE FROM Alumnos WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, id);
-            statement.executeUpdate();
+    // Eliminar un alumno
+    public void eliminarAlumno(int id) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Alumno alumno = session.get(Alumno.class, id);
+            if (alumno != null) {
+                session.delete(alumno);
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 }

@@ -2,12 +2,12 @@ package entity;
 
 import lombok.Data;
 import javax.persistence.*;
-import java.util.Date;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "Alumnos")
-public class Alumno {
+@Table(name = "Profesores")
+public class Profesor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +19,9 @@ public class Alumno {
     @Column(nullable = false, length = 50)
     private String apellido;
 
-    @Column(name = "fecha_nacimiento", nullable = false)
-    private Date fechaNacimiento;
+    @OneToMany(mappedBy = "profesor_id")
+    private Set<AsignacionProfesor> asignaciones;
+
+    @OneToMany(mappedBy = "profesor_id")
+    private Set<Calificacion> calificaciones;
 }
