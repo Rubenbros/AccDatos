@@ -1,7 +1,3 @@
-Aquí tienes unos apuntes para explicar la relación `@OneToMany` en Hibernate, utilizando ejemplos en el contexto de la base de datos "Academia". Esta relación se usa para modelar situaciones en las que un registro en una tabla tiene una relación de "uno a muchos" con registros en otra tabla.
-
----
-
 # Relaciones @OneToMany en Hibernate
 
 ## 1. ¿Qué es `@OneToMany`?
