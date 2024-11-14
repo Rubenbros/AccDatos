@@ -1,13 +1,16 @@
 package entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 @Data
 @Entity
 @Table(name = "Alumnos")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Alumno {
 
     @Id
@@ -22,4 +25,12 @@ public class Alumno {
 
     @Column(name = "fecha_nacimiento", nullable = false)
     private Date fechaNacimiento;
+
+
+    @OneToMany(mappedBy = "alumno")
+    private Set<Calificacion> calificaciones = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "alumno")
+    private Set<Matricula> matriculas = new LinkedHashSet<>();
+
 }

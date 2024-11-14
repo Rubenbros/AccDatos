@@ -1,7 +1,5 @@
 package entity;
 
-import entity.Alumno;
-import entity.Asignatura;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,14 +14,16 @@ public class Matricula {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "alumno_id", nullable = false)
-    private Alumno alumno;
-
-    @ManyToOne
-    @JoinColumn(name = "asignatura_id", nullable = false)
-    private Asignatura asignatura;
 
     @Column(name = "fecha_matricula", nullable = false)
     private Date fechaMatricula;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "alumno_id", nullable = false)
+    private Alumno alumno;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "asignatura_id", nullable = false)
+    private Asignatura asignatura;
+
 }

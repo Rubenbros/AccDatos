@@ -1,10 +1,13 @@
 package entity;
 
-import entity.AsignacionProfesor;
-import entity.Calificacion;
+
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -22,9 +25,13 @@ public class Profesor {
     @Column(nullable = false, length = 50)
     private String apellido;
 
-    @OneToMany(mappedBy = "profesor_id")
-    private Set<AsignacionProfesor> asignaciones;
+    @Column(name = "fecha_nacimiento", nullable = false)
+    private LocalDate fechaNacimiento;
 
-    @OneToMany(mappedBy = "profesor_id")
-    private Set<Calificacion> calificaciones;
+    @OneToMany(mappedBy = "profesor")
+    private Set<AsignacionProfesor> asignacionProfesors = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "profesor")
+    private Set<Calificacion> calificaciones = new LinkedHashSet<>();
+
 }

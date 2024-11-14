@@ -6,18 +6,20 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "Asignacion_Profesor")
+@Table(name = "asignacion_profesor")
 public class AsignacionProfesor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "profesor_id", nullable = false)
     private Profesor profesor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "asignatura_id", nullable = false)
     private Asignatura asignatura;
+
 }

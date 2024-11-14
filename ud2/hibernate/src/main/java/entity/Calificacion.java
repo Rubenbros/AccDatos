@@ -14,18 +14,19 @@ public class Calificacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
+    @Column(nullable = false)
+    private BigDecimal calificacion;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "alumno_id", nullable = false)
     private Alumno alumno;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "asignatura_id", nullable = false)
     private Asignatura asignatura;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "profesor_id", nullable = false)
     private Profesor profesor;
 
-    @Column(nullable = false)
-    private BigDecimal calificacion;
 }
