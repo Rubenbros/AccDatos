@@ -45,13 +45,14 @@ El proyecto usará **Hibernate** para el mapeo objeto-relacional y **Maven** par
 - `usuario`: Relación con la entidad Usuario.
 - `libro`: Relación con la entidad Libro.
 - `fechaPrestamo`: Fecha en la que se realizó el préstamo (tipo `LocalDate`).
-- `fechaDevolucion`: Fecha en la que el libro fue devuelto (tipo `LocalDate`, puede ser nulo si no se ha devuelto).
+- `fechaDevolucion`: Fecha maxima en la que se debe devolver el libro
+- `fechaDevolucionReal`: Fecha real en la que el libro fue devuelto (tipo `LocalDate`, puede ser nulo si no se ha devuelto).
 - `estado`: Estado del préstamo (**EN CURSO**, **FINALIZADO**, **PENDIENTE MULTA**).
 
 **Relación**:
 - Un préstamo implica a un único usuario y un único libro.
 
-#### Los usuarios deben poder realizar prestamos y devoluciones de libros
+#### Los usuarios deben poder realizar préstamos y devoluciones de libros
 
 
 ### **Requisitos Funcionales**
